@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PDF Viewer</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+        #video-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
+        #video-player {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div id="video-container">
+        <video id="video-player" autoplay muted playsinline loop>
+            <source src="presentation.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <script>
+        document.addEventListener('click', function() {
+            const video = document.getElementById('video-player');
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) { // Safari
+                video.webkitRequestFullscreen();
+            }
+        });
+        
+        // Déclenche un faux clic après 1 seconde (optionnel)
+        setTimeout(() => {
+            document.dispatchEvent(new MouseEvent('click'));
+        }, 1000);
+    </script>
+</body>
+</html>
